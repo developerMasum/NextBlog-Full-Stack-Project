@@ -1,0 +1,19 @@
+{
+   "compilerOptions": {
+     "rootDir": ".", // Change rootDir to the project root
+     "outDir": "./dist",
+     "strict": true,
+     "esModuleInterop": true,
+     "skipLibCheck": true,
+     "forceConsistentCasingInFileNames": true
+   },
+   "include": [
+     "./src/**/*",
+     "./prisma/**/*"
+   ],
+   "exclude": [
+     "node_modules",
+     "dist"
+   ]
+ }
+ 
