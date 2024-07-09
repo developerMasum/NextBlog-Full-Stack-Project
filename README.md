@@ -51,7 +51,6 @@ Ensure you have the following installed:
 
 ## Installation
 
-
 **Clone the repository:**
    ```sh
    git clone https://github.com/yourusername/trendy-leather.git](https://github.com/developerMasum/NextBlog-Full-Stack-Project
@@ -80,7 +79,7 @@ npm start
 ```
 
 Open ```http://localhost:3000``` in your browser.
- ```bash
+
 
 
 
@@ -94,7 +93,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For any inquiries or support, please reach out to [Mail](mailto:md.masum0058@gmail.com).
+For any inquiries or support, please reach out to [send me a mail](mailto:md.masum0058@gmail.com).
 
 
 Happy Coding!
