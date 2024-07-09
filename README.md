@@ -79,8 +79,7 @@ JWT_SECRET=your_jwt_secret
 npm start
 ```
 Open ```http://localhost:3000``` in your browser.
-
-   ```bash
+```bash
 
 
 ## Contributing
@@ -95,10 +94,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 For any inquiries or support, please reach out to [Mail](mailto:md.masum0058@gmail.com).
 
----
 
-Happy Shopping!
-cd server
-npm start
-```
-Open ```http://localhost:5000``` in your browser.
+Happy Coding!
+
