@@ -24,11 +24,19 @@ Welcome to **BlogPlex**, a comprehensive platform for reading, writing, liking, 
 
 ## Technologies Used
 
-- **[Next.js](https://nextjs.org/)**: A React framework for server-side rendering and generating static websites.
-- **[shadcn/ui](https://shadcn.dev/)**: A UI library for building beautiful, modern web interfaces.
-- **[lucide-react](https://lucide.dev/docs/lucide-react)**: A collection of simple, beautiful, and customizable SVG icons.
-- **[Redux](https://redux.js.org/)**: A predictable state container for JavaScript apps.
 
+- **TypeScript**
+- **Nextjs**
+- **Shadcnui**
+- **Redux**
+- **Primsa**
+- **JWT (JSON Web Tokens)**
+- **PostgreSQL**
+- **React-quill**
+- **Framer-motion**
+-  **React-chartjs**
+-  **Lucide-react**
+- 
 ## Getting Started
 
 To get a local copy up and running, follow these simple steps.
@@ -73,6 +81,23 @@ npm start
 Open ```http://localhost:3000``` in your browser.
 
    ```bash
+
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and create a pull request with your changes.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For any inquiries or support, please reach out to [Mail](mailto:md.masum0058@gmail.com).
+
+---
+
+Happy Shopping!
 cd server
 npm start
 ```
