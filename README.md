@@ -78,8 +78,10 @@ JWT_SECRET=your_jwt_secret
  cd client
 npm start
 ```
+
 Open ```http://localhost:3000``` in your browser.
-```bash
+ ```bash
+
 
 
 ## Contributing
