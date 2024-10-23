@@ -1,9 +1,9 @@
-import express, { Application, Request, Response, NextFunction } from 'express';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
-import httpStatus from 'http-status';
-import globalErrorHandler from './app/middlewares/globalErrorHandler';
-import router from './app/routes';
+import express, { Application, Request, Response, NextFunction } from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import httpStatus from "http-status";
+import globalErrorHandler from "./app/middlewares/globalErrorHandler";
+import router from "./app/routes";
 
 const app: Application = express();
 
@@ -18,11 +18,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(express.json());
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use('/api/v1', router);
-
-
+app.use("/api/v1", router);
 
 // app.use((req: Request, res: Response, next: NextFunction) => {
 //    res.status(httpStatus.NOT_FOUND).json({
@@ -38,8 +36,8 @@ app.use('/api/v1', router);
 
 app.use(globalErrorHandler);
 
-app.get('/', (req: Request, res: Response) => {
-   res.send('BlogPlex server is running!');
+app.get("/", (req: Request, res: Response) => {
+  res.send("BlogPlex server is running!");
 });
 
 export default app;

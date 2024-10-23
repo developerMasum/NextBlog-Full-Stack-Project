@@ -12,7 +12,13 @@ import { MyAvatar } from '@/components/shadcn/MyAvatar';
 
 import { truncateTitle } from '@/utils/truncateTitle';
 import { Button } from '@/components/ui/button';
-import { Bookmark, BookmarkCheck, ArrowBigUp, Clipboard } from 'lucide-react';
+import {
+  Bookmark,
+  BookmarkCheck,
+  ArrowBigUp,
+  Clipboard,
+  ChevronRight,
+} from 'lucide-react';
 
 import { useState, useEffect } from 'react';
 import { useToast } from '@/components/ui/use-toast';
@@ -41,8 +47,8 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
   const [voteCountNumber, { isLoading, isError }] = useCountBlogVoteMutation();
   const { toast } = useToast();
   const router = useRouter();
-  const truncatedTitle = truncateTitle(blog?.title, 30);
-  const currentUrl = `https://blogplex.vercel.app/blogs/details/${blog?.id}`;
+  const truncatedTitle = truncateTitle(blog?.title, 70);
+  const currentUrl = `http://localhost:5000/blogs/details/${blog?.id}`;
   const whatsappShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(`${blog?.title} - ${currentUrl}`)}`;
   const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?display=page&u=${encodeURIComponent(currentUrl)}`;
   const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
@@ -131,7 +137,7 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
           />
         </div>
       </CardHeader>
-      <div className="flex justify-between items-center p-1">
+      {/* <div className="flex justify-between items-center p-1">
         <div className="flex items-center gap-2">
           <MyAvatar
             url={blog?.author?.profilePhoto || '/photo'}
@@ -140,11 +146,14 @@ const BestBlogCard = ({ blog }: { blog: IBlog }) => {
           <p className="text-sm font-medium">{blog?.author?.name}</p>
         </div>
         <p className="text-sm">{formateDate(blog?.createdAt)}</p>
-      </div>
-      <Separator />
-      <CardContent className="p-2">
-        <p className="text-lg font-semibold">{truncatedTitle}</p>
+      </div> */}
+      {/* <Separator /> */}
+
+      <CardContent className="relative py-2  text-black uppercase font-bold  group transition-all duration-500 hover:text-white overflow-hidden">
+        <p className="relative z-10">{truncatedTitle}</p>
+        <div className="absolute inset-0 bg-orange-500 w-[0%] group-hover:w-full transition-all duration-500 z-0"></div>
       </CardContent>
+
       <CardFooter className={cn('flex justify-between items-center p-2 mb-0')}>
         <TooltipProvider>
           <Tooltip>
@@ -298,7 +307,7 @@ export default BestBlogCard;
 //   const { toast } = useToast();
 //   const router = useRouter();
 //   const truncatedTitle = truncateTitle(blog?.title, 30);
-//   const currentUrl = `https://blogplex.vercel.app/blogs/details/${blog?.id}`;
+//   const currentUrl = `http://localhost:5000/blogs/details/${blog?.id}`;
 //   const whatsappShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(`${blog?.title} - ${currentUrl}`)}`;
 //   const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?display=page&u=${encodeURIComponent(currentUrl)}`;
 //   const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
