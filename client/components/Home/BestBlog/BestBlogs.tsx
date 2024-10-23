@@ -8,8 +8,9 @@ import { useGetAllBlogsQuery } from '@/redux/features/blog/blogApi';
 import CustomLoader from '@/components/shared/CustomLoader/CustomLoader';
 import CustomHeader from '@/components/shared/CustomHeader/CustomHeader';
 
-const BestBlogsServer = () => {
+const BestBlogs = () => {
   const { data, isLoading } = useGetAllBlogsQuery({});
+  console.log(data);
   if (isLoading) {
     return <CustomLoader />;
   }
@@ -47,4 +48,4 @@ const BestBlogsServer = () => {
   );
 };
 
-export default BestBlogsServer;
+export default BestBlogs;
