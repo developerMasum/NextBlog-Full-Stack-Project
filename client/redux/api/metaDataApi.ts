@@ -1,14 +1,14 @@
-import { baseApi } from "./baseApi";
-import { tagTypes } from "../tag-types";
+import { baseApi } from './baseApi';
+import { tagTypes } from '../tag-types';
 
 export const metaApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getMeta: build.query({
       query: () => ({
-        url: "/metadata",
-        method: "GET",
+        url: '/metadata',
+        method: 'GET',
       }),
-      providesTags: [tagTypes.blog,tagTypes.comment],
+      providesTags: [tagTypes.blog, tagTypes.comment],
     }),
   }),
 });

@@ -1,6 +1,6 @@
 // BlogCardSkeleton.jsx or BlogCardSkeleton.tsx
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Skeleton } from "@/components/ui/skeleton"
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const BlogCardSkeleton = () => {
   return (
@@ -26,7 +26,7 @@ const BlogCardSkeleton = () => {
         <Skeleton className="h-8 w-20" />
       </div>
     </Card>
-  )
-}
+  );
+};
 
-export default BlogCardSkeleton
+export default BlogCardSkeleton;

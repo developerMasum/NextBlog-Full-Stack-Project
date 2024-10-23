@@ -7,7 +7,15 @@ import router from './app/routes';
 
 const app: Application = express();
 
-app.use(cors({origin:"https://blog-shadcn-client.vercel.app",credentials:true}));
+const corsOptions = {
+  origin: [
+    "http://localhost:3000",
+    "https://gym-nex-full-stack-app.vercel.app",
+  ],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))

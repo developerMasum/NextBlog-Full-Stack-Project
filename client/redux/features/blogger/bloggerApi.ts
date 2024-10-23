@@ -1,20 +1,14 @@
-import { baseApi } from "@/redux/api/baseApi";
-import { tagTypes } from "@/redux/tag-types";
-import { IMeta } from "@/types";
-import { IAuthor } from "@/types/author";
-
-
-
-
+import { baseApi } from '@/redux/api/baseApi';
+import { tagTypes } from '@/redux/tag-types';
+import { IMeta } from '@/types';
+import { IAuthor } from '@/types/author';
 
 export const authorApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-   
-
     getAllAuthors: build.query({
       query: (arg: Record<string, any>) => ({
-        url: "/author",
-        method: "GET",
+        url: '/author',
+        method: 'GET',
         params: arg,
       }),
       transformResponse: (response: IAuthor[], meta: IMeta) => {
@@ -29,15 +23,15 @@ export const authorApi = baseApi.injectEndpoints({
     deleteAuthor: build.mutation({
       query: (id) => ({
         url: `/author/soft/${id}`,
-        method: "DELETE",
+        method: 'DELETE',
       }),
       invalidatesTags: [tagTypes.blogger],
     }),
     createAuthor: build.mutation({
       query: (data) => ({
-        url:'/user/create-author',
-        method: "POST",
-        data
+        url: '/user/create-author',
+        method: 'POST',
+        data,
       }),
       invalidatesTags: [tagTypes.blogger],
     }),
@@ -45,7 +39,7 @@ export const authorApi = baseApi.injectEndpoints({
     getSingleAuthor: build.query({
       query: (id: string | string[] | undefined) => ({
         url: `/author/${id}`,
-        method: "GET",
+        method: 'GET',
       }),
       providesTags: [tagTypes.blogger],
     }),
@@ -53,19 +47,18 @@ export const authorApi = baseApi.injectEndpoints({
     updateAuthor: build.mutation({
       query: (data) => ({
         url: `/author/${data.id}`,
-        method: "PATCH",
+        method: 'PATCH',
         data: data.body,
       }),
-      invalidatesTags: [tagTypes.blogger,tagTypes.user],
+      invalidatesTags: [tagTypes.blogger, tagTypes.user],
     }),
   }),
 });
 
 export const {
-
   useGetAllAuthorsQuery,
   useDeleteAuthorMutation,
-useGetSingleAuthorQuery,
+  useGetSingleAuthorQuery,
   useUpdateAuthorMutation,
-  useCreateAuthorMutation
+  useCreateAuthorMutation,
 } = authorApi;

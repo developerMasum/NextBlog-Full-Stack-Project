@@ -1,28 +1,24 @@
-"use server";
+'use server';
 
-
-import { FieldValues } from "react-hook-form";
+import { FieldValues } from 'react-hook-form';
 
 export const registerSubscriber = async (data: FieldValues) => {
   const res = await fetch(
-    " http://localhost:5000/api/v1/user/create-subscriber",
+    ' https://finalbogplex-server.vercel.app/api/v1/user/create-subscriber',
     {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-type": "application/json",
+        'Content-type': 'application/json',
       },
       body: JSON.stringify(data),
-      cache:"no-store"
-    }
+      cache: 'no-store',
+    },
   );
 
-  
-
-  const subscriberInfo = await res.json()
+  const subscriberInfo = await res.json();
   if (!res.ok) {
-    throw new Error(subscriberInfo.message || "An unexpected error occurred.");
+    throw new Error(subscriberInfo.message || 'An unexpected error occurred.');
   }
 
- 
-  return subscriberInfo ;
+  return subscriberInfo;
 };

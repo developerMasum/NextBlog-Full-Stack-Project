@@ -1,7 +1,4 @@
-
-
-
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type BlogItem = {
   name: string | undefined;
@@ -20,7 +17,7 @@ const initialState: InitialState = {
 };
 
 const blogSlice = createSlice({
-  name: "blog",
+  name: 'blog',
   initialState,
   reducers: {
     addBlog: (state, action: PayloadAction<approveItem>) => {
@@ -38,4 +35,3 @@ const blogSlice = createSlice({
 export const { addBlog, getBlog, clearBlogItems } = blogSlice.actions;
 
 export default blogSlice.reducer;
-

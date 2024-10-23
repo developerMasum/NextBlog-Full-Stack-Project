@@ -1,6 +1,4 @@
-
-import { configureStore } from "@reduxjs/toolkit";
-
+import { configureStore } from '@reduxjs/toolkit';
 
 import {
   persistStore,
@@ -11,29 +9,33 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-import { baseApi } from "./api/baseApi";
-import approveReducer from "./features/blog/approveSlice";
-import blogSReducer from "./features/blog/blogSlice";
-
+import { baseApi } from './api/baseApi';
+import approveReducer from './features/blog/approveSlice';
+import blogSReducer from './features/blog/blogSlice';
+import bookmarkReducer from './features/blog/bookmarkSlice';
 
 const persistConfig = {
-  key: "root",
+  key: 'root',
   storage,
 };
 
 const persistedApproveReducer = persistReducer(persistConfig, approveReducer);
 const persistedBlogReducer = persistReducer(persistConfig, blogSReducer);
+const persistedBookmarkedReducer = persistReducer(
+  persistConfig,
+  bookmarkReducer,
+);
 // const persistedOrderReducer = persistReducer(persistConfig, orderReducer);
 
 export const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
     approve: persistedApproveReducer,
-    blog:persistedBlogReducer
-   
+    blog: persistedBlogReducer,
+    bookmark: persistedBookmarkedReducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -50,4 +52,3 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 export const persistor = persistStore(store);
-

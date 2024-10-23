@@ -1,9 +1,8 @@
-
-"use client";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+'use client';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import {
   Form,
   FormControl,
@@ -11,26 +10,23 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
-import { logoutUser } from "@/services/actions/logoutUser";
-import { useToast } from "@/components/ui/use-toast";
-import { Loader } from "lucide-react";
-import { useChangePasswordMutation } from "@/redux/features/auth/authApi";
+import { logoutUser } from '@/services/actions/logoutUser';
+import { useToast } from '@/components/ui/use-toast';
+import { Loader } from 'lucide-react';
+import { useChangePasswordMutation } from '@/redux/features/auth/authApi';
 
-const formSchema = z
-  .object({
-    oldPassword: z.string().min(6, {
-      message: "Old password must be at least 6 characters",
-    }),
-    newPassword: z.string().min(6, {
-      message: "New password must be at least 6 characters",
-    }),
-
-  })
-
+const formSchema = z.object({
+  oldPassword: z.string().min(6, {
+    message: 'Old password must be at least 6 characters',
+  }),
+  newPassword: z.string().min(6, {
+    message: 'New password must be at least 6 characters',
+  }),
+});
 
 const ChangePassword = () => {
   const { toast } = useToast();
@@ -39,8 +35,8 @@ const ChangePassword = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      oldPassword: "",
-      newPassword: "",
+      oldPassword: '',
+      newPassword: '',
     },
   });
 
@@ -50,21 +46,21 @@ const ChangePassword = () => {
     try {
       const res = await changePassword(values);
 
-      if ("data" in res && res.data.status === 200) {
+      if ('data' in res && res.data.status === 200) {
         logoutUser(router);
         toast({
-          title: "Success",
+          title: 'Success',
           variant: 'destructive',
           description:
-            "Password changed successfully. You have been logged out.",
+            'Password changed successfully. You have been logged out.',
         });
       } else {
-        throw new Error("Incorrect old password");
+        throw new Error('Incorrect old password');
       }
     } catch (error: any) {
       toast({
-        title: "Error",
-        description: error?.message || "Failed to change password",
+        title: 'Error',
+        description: error?.message || 'Failed to change password',
       });
       console.error(error);
     }
@@ -74,9 +70,7 @@ const ChangePassword = () => {
     <div className="flex items-center justify-center p-10">
       <div className="w-full  space-y-4 p-4 md:p-6 border rounded-md">
         <div className="space-y-1 text-center">
-
           <p className="text-xl md:text-2xl font-semibold">Change Password</p>
-
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -162,14 +156,9 @@ const ChangePassword = () => {
                   )}
                 />
               </div>
-
             </div>
             <div className="w-full md:w-auto md:max-w-[40%] flex justify-center items-center mx-auto  sm:max-w-[60%]">
-              <Button
-                type="submit"
-                disabled={isLoading}
-                className="w-full"
-              >
+              <Button type="submit" disabled={isLoading} className="w-full">
                 {isLoading && <Loader className="ml-10 h-4 w-4 animate-spin" />}
                 Submit
               </Button>

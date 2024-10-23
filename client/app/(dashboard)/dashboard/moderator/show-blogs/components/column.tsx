@@ -1,38 +1,39 @@
-"use client";
+'use client';
 
-import { ColumnDef } from "@tanstack/react-table";
-import Image from "next/image";
+import { ColumnDef } from '@tanstack/react-table';
+import Image from 'next/image';
 
+import { Button } from '@/components/ui/button';
 
-import { Button } from "@/components/ui/button";
+import { formateDate, formateMoney } from '@/utils/common';
+import MyDialog from '@/components/shadcn/MyDialog';
+import BlogUpdateForm from '@/components/Form/BlogUpdateForm';
 
-import { formateDate, formateMoney } from "@/utils/common";
-import MyDialog from "@/components/shadcn/MyDialog";
-import BlogUpdateForm from "@/components/Form/BlogUpdateForm";
-
-import { MyBadge } from "@/components/shadcn/MyBadge";
-import { truncateTitle } from "@/utils/truncateTitle";
-import UpdatePublishedStatus from "./publishedStatus";
-import Link from "next/link";
+import { MyBadge } from '@/components/shadcn/MyBadge';
+import { truncateTitle } from '@/utils/truncateTitle';
+import UpdatePublishedStatus from './publishedStatus';
+import Link from 'next/link';
+import { TTag } from '@/types/blog';
 
 export type Blog = {
   id: string;
   content: string;
   title: string;
   conclusion: string;
-  category:string;
-  publishedStatus:"PENDING" | "APPROVED" | "CANCEL";
- image:string;
+  category: string;
+  tag: TTag[];
+  publishedStatus: 'PENDING' | 'APPROVED' | 'CANCEL';
+  image: string;
   createdAt: Date;
 };
 
 export const allBlogsColumn: ColumnDef<Blog>[] = [
   {
-    accessorKey: "image",
-    header: "Image",
+    accessorKey: 'image',
+    header: 'Image',
     cell: ({ row }) => {
       const image = row.original.image;
-    
+
       return (
         <Image
           src={image}
@@ -44,31 +45,43 @@ export const allBlogsColumn: ColumnDef<Blog>[] = [
       );
     },
   },
- 
+
   {
-    accessorKey: "category",
-    header: "Category",
+    accessorKey: 'category',
+    header: 'Category',
     cell: ({ row }) => {
       const status = row.original.category;
-      return <div><MyBadge title={status}/></div>;
+      return (
+        <div>
+          <MyBadge title={status} />
+        </div>
+      );
     },
   },
   {
-    accessorKey: "title",
-    header: "Title",
+    accessorKey: 'title',
+    header: 'Title',
     cell: ({ row }) => {
       const title = row.original.title;
-      const smallTitle=truncateTitle(title,30)
+      const smallTitle = truncateTitle(title, 30);
 
-      return <div><p>{smallTitle}</p></div>;
+      return (
+        <div>
+          <p>{smallTitle}</p>
+        </div>
+      );
     },
   },
   {
-    accessorKey: "publishedStatus",
-    header: "publishedStatus",
+    accessorKey: 'publishedStatus',
+    header: 'publishedStatus',
     cell: ({ row }) => {
       const status = row.original.publishedStatus;
-      return <div><MyBadge title={status}/></div>;
+      return (
+        <div>
+          <MyBadge title={status} />
+        </div>
+      );
     },
   },
   // {
@@ -79,7 +92,7 @@ export const allBlogsColumn: ColumnDef<Blog>[] = [
   //     return <div>{formateMoney(advanceAmount)}</div>;
   //   },
   // },
- 
+
   // {
   //   accessorKey: "space",
   //   header:"Space",
@@ -89,8 +102,8 @@ export const allBlogsColumn: ColumnDef<Blog>[] = [
   //   },
   // },
   {
-    accessorKey: "createdAt",
-    header:"Created At",
+    accessorKey: 'createdAt',
+    header: 'Created At',
     cell: ({ row }) => {
       const lastSeen = row.original.createdAt;
       return <div>{formateDate(lastSeen)}</div>;
@@ -98,17 +111,22 @@ export const allBlogsColumn: ColumnDef<Blog>[] = [
   },
 
   {
-    id: "statusActions",
-    header: "Change PublishedStatus",
+    id: 'statusActions',
+    header: 'Change PublishedStatus',
     cell: ({ row }) => {
       const blog = row.original;
-      return <UpdatePublishedStatus userId={blog.id} currentStatus={blog.publishedStatus} />;
+      return (
+        <UpdatePublishedStatus
+          userId={blog.id}
+          currentStatus={blog.publishedStatus}
+        />
+      );
     },
   },
 
   {
-    id: "editActions",
-    header: "Action",
+    id: 'editActions',
+    header: 'Action',
     cell: ({ row }) => {
       const blog = row.original;
       return (
@@ -121,12 +139,16 @@ export const allBlogsColumn: ColumnDef<Blog>[] = [
     },
   },
   {
-    id: "detailsAction",
-    header: "Action",
+    id: 'detailsAction',
+    header: 'Action',
     cell: ({ row }) => {
       const blogId = row.original.id;
       return (
-        <Button variant='outline'><Link href={`/dashboard/moderator/show-blogs/details/${blogId}`}>Details</Link></Button>
+        <Button variant="outline">
+          <Link href={`/dashboard/moderator/show-blogs/details/${blogId}`}>
+            Details
+          </Link>
+        </Button>
       );
     },
   },

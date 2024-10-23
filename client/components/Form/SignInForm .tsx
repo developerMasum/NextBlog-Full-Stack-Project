@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 import {
   Form,
   FormControl,
@@ -6,62 +6,67 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { useForm } from "react-hook-form";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
+} from '../ui/form';
+import { useForm } from 'react-hook-form';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
+import { zodResolver } from '@hookform/resolvers/zod';
 
+import { useState } from 'react';
 
-import Link from "next/link";
-import { useState } from "react";
-
-
-import { useToast } from "../ui/use-toast";
-import { useRouter } from "next/navigation";
-import { Loader } from "lucide-react";
-import { signInUser } from "@/services/actions/signInUser";
-import { storeUserInfo } from "@/services/authServices";
+import { useToast } from '../ui/use-toast';
+import { useRouter } from 'next/navigation';
+import { Loader } from 'lucide-react';
+import { signInUser } from '@/services/actions/signInUser';
+import { storeUserInfo } from '@/services/authServices';
+import { ToastAction } from '../ui/toast';
 
 const formSchema = z.object({
   email: z.string().email({
-    message: "Please enter a valid email",
+    message: 'Please enter a valid email',
   }),
   password: z.string().min(6, {
-    message: "Password must be at least 6 characters",
+    message: 'Password must be at least 6 characters',
   }),
 });
 
 const SignInForm = () => {
   const router = useRouter();
   const { toast } = useToast();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setLoading(true);
-    setError("");
+    setError('');
 
     try {
       const res = await signInUser(values);
 
       if (res?.data?.accessToken) {
         storeUserInfo({ accessToken: res?.data?.accessToken });
-        toast({ color:'green', title: "Login", description: "User login successfully" });
+        toast({
+          color: 'green',
+          title: 'Login',
+          description: 'User login successfully',
+          action: (
+            <ToastAction altText="Goto schedule to undo">Close</ToastAction>
+          ),
+        });
         router.refresh();
       } else {
-        setError(res?.message || "An unexpected error occurred.");
+        setError(res?.message || 'An unexpected error occurred.');
       }
     } catch (err: any) {
-      setError(err?.message || "An unexpected error occurred.");
+      setError(err?.message || 'An unexpected error occurred.');
     } finally {
       setLoading(false);
     }
@@ -107,18 +112,11 @@ const SignInForm = () => {
               </FormItem>
             )}
           />
-        
+
           <Button type="submit" disabled={loading} className="w-full">
             Signin
             {loading && <Loader className="animate-spin ml-6 h-4 w-4" />}
           </Button>
-
-          <div className="text-balance flex justify-center items-center gap-1 text-center">
-            <span>New user?</span>
-
-            <span className="text-primary">
-              Go Sign Up</span>
-          </div>
         </div>
       </form>
     </Form>

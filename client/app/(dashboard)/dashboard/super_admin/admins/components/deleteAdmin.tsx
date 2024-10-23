@@ -1,11 +1,10 @@
-"use client";
+'use client';
 
-import MyAlertDialog from "@/components/shadcn/MyAlertDialog";
-import { useToast } from "@/components/ui/use-toast";
-import { useDeleteAdminMutation } from "@/redux/features/admin/adminApi";
+import MyAlertDialog from '@/components/shadcn/MyAlertDialog';
+import { useToast } from '@/components/ui/use-toast';
+import { useDeleteAdminMutation } from '@/redux/features/admin/adminApi';
 
-import { useDeleteModeratorMutation } from "@/redux/features/moderator/moderatorApi";
-
+import { useDeleteModeratorMutation } from '@/redux/features/moderator/moderatorApi';
 
 interface DeleteFlatProps {
   adminId: string;
@@ -13,7 +12,7 @@ interface DeleteFlatProps {
 
 const DeleteAdmin: React.FC<DeleteFlatProps> = ({ adminId }) => {
   const { toast } = useToast();
-  const [deleteBlogger, { isLoading }] =useDeleteAdminMutation();
+  const [deleteBlogger, { isLoading }] = useDeleteAdminMutation();
 
   const handleDelete = async () => {
     try {
@@ -21,13 +20,13 @@ const DeleteAdmin: React.FC<DeleteFlatProps> = ({ adminId }) => {
 
       if (res.id) {
         toast({
-          title: "Success",
-          description: "Admin deleted successfully",
+          title: 'Success',
+          description: 'Admin deleted successfully',
         });
       }
     } catch (error: any) {
       toast({
-        title: "Error",
+        title: 'Error',
         description: error?.message,
       });
     }
