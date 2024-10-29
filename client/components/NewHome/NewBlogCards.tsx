@@ -23,7 +23,7 @@ const NewBlogCards = () => {
       <div className="wrapper mt-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-1 gap-4 md:m-0">
           {data?.blogs
-            ?.slice(0, 4)
+            ?.slice(0, 3)
             .map((blog: IBlog, id: number) => (
               <NewBlog
                 blog={blog}
