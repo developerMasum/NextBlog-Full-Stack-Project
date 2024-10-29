@@ -3,6 +3,7 @@ import BelowFooter from '@/components/NewHome/BelowFooter';
 import Categories from '@/components/NewHome/Categories';
 import JoinUs from '@/components/NewHome/JoinUs';
 import LatestPosts from '@/components/NewHome/LatestPosts';
+import Loading from '@/components/NewHome/Loading';
 import CardsGrid from '@/components/NewHome/NewBlogCards';
 import NewsShelter from '@/components/NewHome/NewsShelter';
 import SocialFollow from '@/components/NewHome/SocialFollow';
@@ -30,6 +31,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Loading />
       <BelowFooter />
     </main>
   );
